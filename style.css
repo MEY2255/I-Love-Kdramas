@@ -1,0 +1,181 @@
+ /* --- Paleta de Colores Pastel --- */
+        :root {
+            --pastel-rosa: #ffd6e8;
+            --pastel-azul: #a8d8ff;
+            --pastel-menta: #c3f2d2;
+            --pastel-lavanda: #e0ccff;
+            --pastel-melocoton: #ffe5cc;
+            --color-principal: #ff9ebb; /* Rosa más intenso para acentos */
+            --color-texto-oscuro: #333;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            /* Degradado pastel rosa + azul */
+            background: linear-gradient(135deg, var(--pastel-rosa), var(--pastel-azul));
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--color-texto-oscuro);
+        }
+
+        .contenedor-principal {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco semitransparente */
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Animación de Máquina de Escribir (Typewriter) --- */
+        .maquina {
+            width: 33ch; 
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid var(--color-principal); /* cursor */
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--color-principal);
+            animation: escribir 6s steps(33) forwards, parpadeo .8s infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes escribir {
+            from { width: 0; }
+            to { width: 33ch; }
+        }
+
+        @keyframes parpadeo {
+            50% { border-color: transparent; }
+        }
+
+        /* --- Estilos Generales de Contenido --- */
+        .texto-cursiva {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--color-texto-oscuro);
+        }
+
+        .nube-texto {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--pastel-menta); /* Color pastel diferente */
+            border-radius: 40px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+            font-size: 1.8rem;
+            color: var(--color-texto-oscuro);
+            text-align: center;
+            margin: 20px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; 
+        }
+
+        .nube-texto:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2); 
+            background-color: var(--pastel-lavanda); /* Cambio sutil al pasar el mouse */
+            cursor: pointer;
+        }
+
+        /* --- Animación Flotante Horizontal (Ligeramente modificada) --- */
+        .flotar-horizontal {
+            display: block;
+            margin: 30px auto;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: izquierdaDerecha 4s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+        .flotar-horizontal:hover {
+            transform: scale(1.03); /* Zoom sutil al pasar el mouse */
+        }
+
+        @keyframes izquierdaDerecha {
+            0% { left: 0px; }
+            50% { left: 15px; } 
+            100% { left: 0px; }
+        }
+
+        /* --- Sistema de Calificación (Estrellas Interactivas) --- */
+        .rating {
+            display: flex;
+            flex-direction: row-reverse; /* Las estrellas van de derecha a izquierda */
+            justify-content: flex-start;
+            margin: 20px 0;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 2.5rem;
+            color: var(--pastel-melocoton); /* Color inicial suave */
+            cursor: pointer;
+            padding: 0 5px;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Efecto al pasar el mouse (hover) */
+        .rating label:hover,
+        .rating label:hover ~ label {
+            color: var(--color-principal); /* Rosa intenso */
+            transform: scale(1.1);
+        }
+
+        /* Estrellas seleccionadas (checked) y anteriores a la seleccionada */
+        .rating input:checked ~ label {
+            color: gold; /* Color final de la reseña */
+        }
+
+        /* --- Animación de Carga (Inspiración Viki) --- */
+        .loader {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--pastel-lavanda);
+            border-top: 5px solid var(--color-principal); /* Parte en movimiento */
+            border-radius: 50%;
+            display: inline-block;
+            animation: girar 1.5s linear infinite;
+        }
+
+        @keyframes girar {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- Botón de Acción Flotante --- */
+        .boton-flotante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--color-principal);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .boton-flotante:hover {
+            background-color: #ff7aa5; /* Tono más claro */
+            transform: translateY(-5px); /* Pequeño salto */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+        }

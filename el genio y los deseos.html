@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
+  /* Degradado pastel rosa + azul */
+  background: linear-gradient(135deg, #ffd6e8, #a8d8ff);
+
+  /* Hacer que el degradado cubra bien la pantalla */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  font-family: Arial, sans-serif;
+}
+
+.maquina {
+  width: 33ch; /* número de caracteres que tiene tu texto */
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #ff9ebb; /* cursor */
+  font-size: 2rem;
+  animation: escribir 6s steps(32) forwards, parpadeo .8s infinite;
+}
+
+/* escribe el texto */
+@keyframes escribir {
+  from { width: 0; }
+  to { width: 33ch; }
+}
+
+/* cursor parpadeando */
+@keyframes parpadeo {
+  50% { border-color: transparent; }
+}
+
+.texto-cursiva {
+  font-style: italic;
+  font-size: 23px;
+}
+.flotar-horizontal {
+  position: relative;
+  animation: izquierdaDerecha 3s ease-in-out infinite;
+}
+
+/* Animación horizontal */
+@keyframes izquierdaDerecha {
+  0%   { left: 0px; }
+  50%  { left: 20px; }  /* mueve 20px a la derecha */
+  100% { left: 0px; }
+}
+
+.nube-texto {
+  display: inline-block;
+  padding: 20px 40px;
+  background: #fddde6;             /* color pastel */
+  border-radius: 50px;             /* bordes redondeados estilo nube */
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2); /* sombra suave */
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+  max-width: 90%;
+  margin: 20px auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* transición suave */
+}
+
+/* Efecto al pasar el mouse */
+.nube-texto:hover {
+  transform: translateY(-10px); /* se mueve hacia arriba 10px */
+  box-shadow: 0 12px 20px rgba(0,0,0,0.3); /* sombra más fuerte */
+  cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+   <h1 class="maquina"> . EL GENIO Y LOS DESEOS</h1>
+<p class="texto-cursiva">El genio y los deseos es un k drama de fantasía/romance que mezcla magia, dilemas morales y emociones.
+ La historia sigue a Bae Suzy como Ka young, una joven emocionalmente distante que, en un viaje,
+  descubre una lámpara mágica y despierta al genio Kim Woo bin como Iblis, quien ha esperado mil años para conceder deseos.
+Aunque al principio la trama puede parecer un cuento de hadas clásico, rápidamente se vuelve más oscura: 
+Iblis no es simplemente un genio benevolente, sino un ser que cuestiona la moralidad humana y
+ pone a examen cuán fácil es caer en la corrupción. Se presenta a Iblis, un genio creado de “fuego sin humo” que fue castigado 
+ tras rehusar inclinarse ante los humanos.Conocemos a Ki Ka young, una joven fría y emocionalmente distante, bajo la tutela de su 
+ abuela tras el abandono de su madre. 
+En un viaje a Dubái, Ka young encuentra una lámpara antigua enterrada en la arena, 
+la rompe inconscientemente y despierta a Iblis. 
+Iblis le revela que ella es su nueva “maestra” y le plantea un desafío: él debe demostrar
+ que los humanos son corruptibles mediante tres deseos que ella haga. Ella se muestra reacia.
+  Iblis se introduce al mundo moderno, intenta aprender sobre los humanos y su entorno, mientras Ka young regresa a Corea y debe enfrentarse a su pasado y a su propia naturaleza. El contraste se pone de manifiesto: Ka young, que ha intentado controlar su desconexión emocional, versus Iblis, cuyo objetivo es provocar deseos egoístas para confirmar su teoría sobre la humanidad. 
+ <h1 class="nube-texto"> Conclusión</h1>
+En definitiva, El genio y los deseos es una apuesta interesante dentro del género de k dramas: con buen elenco, 
+producción atractiva y una premisa que invita a reflexionar.</p>
+<img src="IMG/el genio y los deseos.jpeg">
+
+</body>
+</html>

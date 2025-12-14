@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I LOVE KDRAMAS </title>
+<style>
+
+/* Estilos para el Carrusel */
+.carousel-container {
+    max-width: 1200px; /* Ancho máximo del carrusel, ajústalo si quieres que sea más ancho */
+    position: relative;
+    margin: 0 auto 40px auto; /* Centrar y añadir margen inferior */
+    border-radius: 15px;
+    overflow: hidden; /* Corta las esquinas del carrusel */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+   
+}
+
+.carousel-slides {
+    display: flex; /* Usamos flexbox dentro para ayudar con la transición si la añades después */
+    width: 100%;
+}
+
+.mySlides {
+    display: none; /* Oculta todas las diapositivas por defecto */
+    width: 100%;
+}
+
+.mySlides img {
+    width: 100%;
+    height: 400px; /* Altura fija para el carrusel */
+    object-fit: cover; /* Asegura que la imagen cubra todo el espacio */
+}
+
+/* Flechas de navegación */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para ver la flecha */
+    z-index: 100;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Texto de la diapositiva (Título sobre la imagen) */
+.slide-text {
+    color: white;
+    font-size: 24px;
+    padding: 10px 15px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: left;
+    background-color: rgba(255, 192, 203, 0.7); /* Fondo rosa pastel semitransparente */
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+    font-weight: bold;
+}
+
+/* Puntos indicadores */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #FF69B4; /* Rosa fuerte */
+}
+
+/* Efecto de fade (transición de imagen) */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+    /* Estilos Generales y Fondo Pastel */
+    body {
+        margin: 0;
+        padding: 40px 20px; /* Añadir padding para que el contenido no toque los bordes */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* Fondo con gradiente de colores durazno y rosado (similar a Viki) */
+        background: linear-gradient(135deg, #FFDAB9, #FFC0CB, #FF69B4); /* Melocotón, Rosa, Rosa Fuerte */
+        min-height: 100vh;
+        background-attachment: fixed;
+    }
+
+    /* 1. Contenedor principal con CSS Grid (Como la página principal de Viki) */
+    .contenedor-dramas {
+        display: grid;
+        /* Define 5 columnas automáticas que se ajustan al tamaño de la tarjeta */
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px; /* Espacio entre las tarjetas */
+        max-width: 1300px; /* Limita el ancho del contenido */
+        margin: 0 auto; /* Centra el contenedor */
+    }
+
+    /* 2. Estilo de la Tarjeta (Una unidad completa de título + imagen) */
+    .drama-card {
+        background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+        border-radius: 12px;
+        overflow: hidden; /* Asegura que el contenido interno respete el borde redondeado */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none; /* Quitar subrayado del enlace si la tarjeta es un enlace */
+        color: inherit;
+        display: block; /* La tarjeta es un bloque de enlace */
+    }
+
+    /* Efecto al pasar el mouse en la tarjeta (similar al efecto de Viki) */
+    .drama-card:hover {
+        transform: translateY(-8px); /* Se levanta un poco */
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    }
+
+    /* 3. Estilo de la Imagen */
+    .drama-card img {
+        width: 100%; /* La imagen ocupa todo el ancho de la tarjeta */
+        height: 300px; /* Altura fija para todas las imágenes */
+        object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+        display: block;
+        border-bottom: 2px solid #FFC0CB; /* Pequeña línea rosa pastel para separar */
+    }
+
+    /* 4. Estilo del Título (simulando la "nube" o el título flotante) */
+    .drama-card-title {
+        /* Estilos de la "nube" con colores pastel */
+        background: #fddde6; 
+        color: #333;
+        padding: 10px 15px;
+        text-align: center;
+        font-size: 1.1rem;
+        font-weight: bold;
+        /* Borde redondeado solo abajo para simular la "nube" */
+        border-radius: 0 0 12px 12px; 
+    }
+    
+    /* El efecto de animación se aplica ahora a toda la tarjeta */
+
+    /* --- Sticky Footer Setup (Opcional pero recomendado) --- */
+/* Asegura que el footer esté al final de la vista si el contenido es corto */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Usa toda la altura de la ventana (viewport height) */
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.main-content {
+    flex: 1; /* Esto hace que el contenido principal crezca y empuje el footer hacia abajo */
+    padding: 20px;
+}
+
+/* --- Estilos del Footer Sencillo --- */
+.simple-footer {
+    background-color: #333; /* Un color de fondo oscuro típico */
+    color: white; /* Texto claro para contraste */
+    text-align: center; /* Centra el texto */
+    padding: 20px 0; /* Espaciado arriba y abajo */
+    width: 100%;
+}
+
+.footer-content p {
+    margin: 0; /* Elimina el margen por defecto del párrafo */
+    font-size: 14px;
+}
+
+.simple-footer a {
+    color: #4da6ff; /* Un color de enlace que destaque un poco */
+    text-decoration: none; /* Quita el subrayado por defecto */
+}
+
+.simple-footer a:hover {
+    text-decoration: underline; /* Añade subrayado al pasar el mouse */
+}
+
+
+</style>
+</head>
+<body>
+
+<body>
+    
+    <div class="carousel-container">
+        
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+
+        <div class="carousel-slides">
+            
+            <div class="mySlides fade">
+                <a href="recuerdos de la juventud.html">
+                    <img src="IMG/rdj.png" alt="Recuerdos de la Juventud">
+                    <div class="slide-text">Recordando la Juventud</div>
+                </a>
+            </div>
+
+            <div class="mySlides fade">
+                <a href="secre kim.html">
+                    <img src="IMG/qloalsk.png" alt="Secretaria Kim">
+                    <div class="slide-text">La Historia de la Secretaria Kim</div>
+                </a>
+            </div>
+
+            <div class="mySlides fade">
+                <a href="king the land.html">
+                    <img src="IMG/ktl.png" alt="King The Land">
+                    <div class="slide-text">Un Romance en King The Land</div>
+                </a>
+            </div>
+
+            <div class="mySlides fade">
+                <a href=".contenedor-dramas">
+                    <img src="IMG/F1.png" alt="cONOCE LA PAG">
+                    <div class="slide-text">Explora nuestro sitio</div>
+                </a>
+            </div>
+
+
+            </div>
+
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span> 
+            <span class="dot" onclick="currentSlide(2)"></span> 
+            <span class="dot" onclick="currentSlide(3)"></span> 
+            <span class="dot" onclick="currentSlide(4)"></span> 
+        </div>
+
+    </div>
+    
+    <div class="contenedor-dramas">
+        </div>
+    
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Controla las diapositivas siguiente/anterior
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+
+        // Controla la diapositiva actual por el punto (dot)
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          let dots = document.getElementsByClassName("dot");
+          if (n > slides.length) {slideIndex = 1}    
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+          }
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+        }
+        
+        // Función para autodesplazamiento (opcional, pero recomendado)
+        function autoSlide() {
+            plusSlides(1);
+            setTimeout(autoSlide, 5000); // Cambia cada 5 segundos
+        }
+        
+        // Iniciar el carrusel y el autodesplazamiento al cargar la página
+        // Descomenta la línea de abajo si quieres que se mueva automáticamente:
+        // window.onload = autoSlide;
+        
+    </script>
+
+
+    
+    <div class="contenedor-dramas">
+        
+        <a href="recuerdos de la juventud.html" class="drama-card">
+            <img src="IMG/recuerdos de la juventud.jpg" alt="Recuerdos de la Juventud">
+            <div class="drama-card-title">RECUERDOS DE LA JUVENTUD</div>
+        </a>
+
+        <a href="secre kim.html" class="drama-card">
+            <img src="IMG/secretaria.png" alt="Qué le Ocurre a la Secretaria Kim">
+            <div class="drama-card-title">QUE LE OCURRE A LA SECRETARIA KIM</div>
+        </a>
+
+        <a href="ella era bonita.html" class="drama-card">
+            <img src="IMG/ella era bonita.jpeg" alt="Ella Era Bonita">
+            <div class="drama-card-title">ELLA ERA BONITA </div>
+        </a>
+
+        <a href="king the land.html" class="drama-card">
+            <img src="IMG/king-the-land.png" alt="King The Land">
+            <div class="drama-card-title">KING THE LAND</div>
+        </a>
+
+        <a href="no ama no gana.html" class="drama-card">
+            <img src="IMG/no-gain-no-love.png" alt="El que no Gana no Ama">
+            <div class="drama-card-title">EL QUE NO GANA NO AMA</div>
+        </a>
+
+        <a href="si la vida te da mandarinas.html" class="drama-card">
+            <img src="IMG/si la vida te da mandarinas.jpeg" alt="Si la Vida te da Mandarinas">
+            <div class="drama-card-title">SI LA VIDA TE DA MANDARINAS</div>
+        </a>
+
+        <a href="my demon.html" class="drama-card">
+            <img src="IMG/my demon.jpg" alt="Adorable Demonio">
+            <div class="drama-card-title">MI ADORABLE DEMONIO</div>
+        </a>
+
+        <a href="los chicos son mejores que las flores - copia.html" class="drama-card">
+            <img src="IMG/f4.png" alt="Los Chicos son Mejores que las Flores">
+            <div class="drama-card-title">LOS CHICOS SON MEJORES QUE LAS FLORES</div>
+        </a>
+
+        <a href="bon appetit.html" class="drama-card">
+            <img src="IMG/bon-appetit.jpg" alt="Appetit Your Majesty">
+            <div class="drama-card-title">APPETIT YOUR MAJESTY</div>
+        </a>
+
+        <a href="marry my husband.html" class="drama-card">
+            <img src="IMG/marry-my-husband.jpg" alt="Cásate con mi Esposo">
+            <div class="drama-card-title">CASATE CON MI ESPOSO</div>
+        </a>
+
+        <a href="el genio y los deseos - copia.html" class="drama-card">
+            <img src="IMG/genie-make.jpg" alt="El Genio y los Deseos">
+            <div class="drama-card-title">EL GENIO Y LOS DESEOS</div>
+        </a>
+
+    </div>
+<br><br><br>
+     <footer class="simple-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 I LOVE KDRAMAS . Todos los derechos reservados. | 
+               <a href="#">Política de Privacidad</a> | 
+               <a href="#">Términos de Servicio</a></p>
+        </div>
+        
+    </footer>
+</body>
+</html>
